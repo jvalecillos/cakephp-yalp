@@ -36,8 +36,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB;
-``` 
-
+```
 * This plugin is designed to work exactly as CakePHP default auth component. 
 
 See: [CakePHP: Simple Authentication and Authorization Application](http://book.cakephp.org/2.0/en/tutorials-and-examples/blog-auth-example/auth.html)
@@ -50,14 +49,14 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
 
-    public $components = array(
-			'Acl',
-			'Auth' => array(
-					'authorize' => array(
-							'Actions' => array('actionPath' => 'controllers')
-					)
-			),
-			'Session',
+	public $components = array(
+		'Acl',
+		'Auth' => array(
+			'authorize' => array(
+				'Actions' => array('actionPath' => 'controllers')
+			)
+		),
+		'Session',
 	);
 
 	public $helpers = array('Html', 'Form','Session');
@@ -89,9 +88,7 @@ class AppController extends Controller {
 
 ### 3. Download YALP
 
-* Clone/Copy the files in this directory into `app/Plugin/YALP`
-
-This can be done with the git submodule command
+* Clone/Copy the files in this directory into `app/Plugin/YALP`. This can be done with the git submodule command
 ```sh
 git submodule add https://github.com/jvalecillos/cakephp-yalp.git app/Plugin/YALP
 ```
@@ -99,12 +96,10 @@ git submodule add https://github.com/jvalecillos/cakephp-yalp.git app/Plugin/YAL
 ### 4. Configure the plugin
 
 * Ensure the plugin is loaded in `app/Config/bootstrap.php`:
-´´´php
+```php
 CakePlugin::load('YALP', array('bootstrap' => true));
-´´´
-
+```
 * Create a `app/Config/ldap.php` config file with correspondent LDAP values. E.g.:
-
 ```php
 $config['LDAP']['server'] = 'ldap://com.example:3268/DC=example';
 $config['LDAP']['port'] = '3268';
@@ -128,9 +123,7 @@ $config['LDAP']['db_model'] = "User";
 // LDAP filter to look up for group membership
 $config['LDAP']['group_filter'] = "(&(objectCategory=User) (memberOf=CN=%GROUPNAME%, OU=Common Groups,". $config['LDAP']['base_dn'] ."))";
 ```
-
 * You could change LDAP filters as your need. Below is a link about Active Directory particular case.
-
 * Please notice that in this case username and samaccountname (ldap attribute) correspond each other and are use for authentication.
 
 See: [Active Directory: LDAP Syntax Filters](https://social.technet.microsoft.com/wiki/contents/articles/5392.active-directory-ldap-syntax-filters.aspx)
